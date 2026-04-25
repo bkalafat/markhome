@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkHome Examples</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="/">MarkHome</a>
+        <a href="/syntax.html">Syntax</a>
+        <a href="/api.html">API</a>
+        <a href="/examples.html">Examples</a>
+        <a href="/roadmap.html">Roadmap</a>
+      </nav>
+    </header>
+    <main class="doc-page">
+      <h1>Examples</h1>
+      <div class="example-list">
+        <pre class="markhome">home "Living Room" unit cm
+
+room LivingRoom at 0,0 size 420x360 label "Living Room"
+window LivingRoom north at 110 size 180
+door LivingRoom east at 155 size 90
+item sofa in LivingRoom at 55,245 size 230x75 label "Sofa"
+item tv in LivingRoom at 150,25 size 120x28 label "TV"
+item rug in LivingRoom at 115,135 size 190x120 label "Rug"</pre>
+        <pre class="markhome">home "Baby Room" unit cm
+
+room BabyRoom at 0,0 size 300x280 label "Baby Room"
+window BabyRoom north at 70 size 140
+door BabyRoom west at 100 size 80
+item crib in BabyRoom at 35,80 size 125x75 label "Crib"
+item wardrobe in BabyRoom at 185,65 size 85x150 label "Wardrobe"</pre>
+      </div>
+    </main>
+    <script type="module">
+      import markhome from "markhome";
+
+      markhome.initialize({
+        startOnLoad: true,
+        renderOptions: {
+          height: 340
+        }
+      });
+    </script>
+  </body>
+</html>

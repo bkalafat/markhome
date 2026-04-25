@@ -1,0 +1,20 @@
+# Studio apartment example
+
+home "Studio Apartment" unit cm
+
+room Main at 0,0 size 520x390 label "Main Space"
+room Bath right_of Main gap 18 size 190x220 label "Bath"
+room Entry below Bath gap 18 size 190x150 label "Entry"
+
+window Main north at 145 size 210
+window Main west at 90 size 140
+door Main east at 265 size 90 swing inward
+door Bath west at 85 size 72 swing inward
+door Entry west at 48 size 80 swing inward
+
+item sofa in Main at 45,245 size 210x72 label "Sofa"
+item bed in Main at 320,230 size 150x110 label "Bed"
+item table in Main at 185,122 size 110x80 label "Table"
+item wardrobe in Main at 365,40 size 100x68 label "Storage"
+
+note Main "Open center path"

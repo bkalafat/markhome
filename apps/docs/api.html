@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkHome API</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="/">MarkHome</a>
+        <a href="/syntax.html">Syntax</a>
+        <a href="/api.html">API</a>
+        <a href="/examples.html">Examples</a>
+        <a href="/roadmap.html">Roadmap</a>
+      </nav>
+    </header>
+    <main class="doc-page">
+      <h1>API</h1>
+      <h2>parse(source)</h2>
+      <p>Parses MarkHome text into an AST with rooms, doors, windows, items, notes, and recoverable errors.</p>
+      <h2>renderSvg(ast, options)</h2>
+      <p>Renders a parsed AST to an SVG string.</p>
+      <h2>render(source, options)</h2>
+      <p>Parses source text and renders SVG in one call.</p>
+      <h2>initialize(options)</h2>
+      <p>Finds MarkHome blocks in the browser and replaces them with SVG diagrams.</p>
+      <pre><code>import markhome from "markhome";
+
+markhome.initialize({
+  startOnLoad: true
+});</code></pre>
+    </main>
+  </body>
+</html>

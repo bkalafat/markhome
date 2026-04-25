@@ -1,0 +1,14 @@
+# Living room example
+
+home "Living Room" unit cm
+
+room LivingRoom at 0,0 size 420x360 label "Living Room"
+
+window LivingRoom north at 110 size 180
+door LivingRoom east at 155 size 90 swing inward
+
+item sofa in LivingRoom at 55,245 size 230x75 label "Sofa"
+item tv in LivingRoom at 150,25 size 120x28 label "TV"
+item rug in LivingRoom at 115,135 size 190x120 label "Rug"
+
+note LivingRoom "Keep 80cm walking path"

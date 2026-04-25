@@ -1,0 +1,14 @@
+# Kitchen example
+
+home "Kitchen" unit cm
+
+room Kitchen at 0,0 size 330x250 label "Kitchen"
+
+window Kitchen south at 70 size 150
+door Kitchen north at 115 size 82 swing inward
+
+item counter in Kitchen at 20,25 size 70x190 label "Counter"
+item sink in Kitchen at 110,25 size 80x55 label "Sink"
+item table in Kitchen at 180,105 size 110x80 label "Table"
+
+note Kitchen "Keep sink path clear"

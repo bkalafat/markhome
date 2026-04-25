@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkHome Docs</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="/">MarkHome</a>
+        <a href="/syntax.html">Syntax</a>
+        <a href="/api.html">API</a>
+        <a href="/examples.html">Examples</a>
+        <a href="/roadmap.html">Roadmap</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">MarkHome v0.1</p>
+          <h1>Markdown for simple 2D home layout diagrams.</h1>
+          <p class="lede">Write home layouts as text. Render them as clean SVG diagrams. Use them in docs, blogs, READMEs, and AI workflows.</p>
+        </div>
+        <pre class="markhome">home "My Apartment" unit cm
+
+room LivingRoom at 0,0 size 420x360 label "Living Room"
+room BabyRoom right_of LivingRoom gap 20 size 300x280 label "Baby Room"
+
+window LivingRoom north at 110 size 180
+door LivingRoom east at 155 size 90
+item sofa in LivingRoom at 55,245 size 230x75 label "Sofa"
+note LivingRoom "Keep 80cm walking path"</pre>
+      </section>
+
+      <section class="band">
+        <h2>What MarkHome Is</h2>
+        <p>MarkHome is a text-based 2D home layout diagram standard. Its core scope is deliberately small: text, parser, AST, SVG renderer.</p>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h2>Install</h2>
+          <pre><code>npm install markhome</code></pre>
+        </article>
+        <article>
+          <h2>Render</h2>
+          <pre><code>import { render } from "markhome";
+
+const svg = render(source);</code></pre>
+        </article>
+        <article>
+          <h2>CLI</h2>
+          <pre><code>npx @markhome/cli room.markhome -o room.svg</code></pre>
+        </article>
+      </section>
+    </main>
+
+    <script type="module">
+      import markhome from "markhome";
+
+      markhome.initialize({
+        startOnLoad: true,
+        renderOptions: {
+          height: 430
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "paths": {
+      "markhome": [
+        "../../packages/markhome/src/index.ts"
+      ],
+      "@markhome/core": [
+        "../../packages/core/src/index.ts"
+      ],
+      "@markhome/svg": [
+        "../../packages/svg/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "vite.config.ts"
+  ]
+}

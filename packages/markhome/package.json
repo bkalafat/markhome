@@ -1,0 +1,33 @@
+{
+  "name": "markhome",
+  "version": "0.1.0",
+  "description": "Markdown-style syntax and renderer for simple 2D home layout diagrams.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@markhome/core": "workspace:*",
+    "@markhome/svg": "workspace:*"
+  },
+  "keywords": [
+    "markdown",
+    "diagram",
+    "floorplan",
+    "svg",
+    "home"
+  ],
+  "license": "MIT"
+}
