@@ -4,6 +4,8 @@ Markdown for simple 2D home layout diagrams.
 
 ![MarkHome example floor plan](assets/markhome-example.svg)
 
+Live docs: https://bkalafat.github.io/markhome/
+
 ```markhome
 home "My Apartment" unit cm
 
