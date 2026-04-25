@@ -27,7 +27,7 @@ It is not a CAD tool, BIM tool, 3D planner, AI interior designer, or marketplace
 
 ```bash
 npm install markhome
-npm install -D @markhome/cli
+npm install -D @bkalafat/markhome-cli
 ```
 
 ## Browser Usage
@@ -69,7 +69,7 @@ const sameSvg = render(source);
 ## CLI
 
 ```bash
-npx @markhome/cli room.markhome -o room.svg
+npx @bkalafat/markhome-cli room.markhome -o room.svg
 ```
 
 After install, the CLI binary is also available as:

@@ -10,8 +10,8 @@
     "dev": "corepack pnpm --filter @markhome/playground dev",
     "dev:docs": "corepack pnpm --filter @markhome/docs dev",
     "check": "corepack pnpm build && corepack pnpm -r check",
-    "release:dry-run": "corepack pnpm -r --filter @markhome/core --filter @markhome/svg --filter markhome --filter @markhome/cli publish --dry-run --access public --no-git-checks",
-    "publish:packages": "corepack pnpm -r --filter @markhome/core --filter @markhome/svg --filter markhome --filter @markhome/cli publish --access public --no-git-checks"
+    "release:dry-run": "corepack pnpm -r --filter @bkalafat/markhome-core --filter @bkalafat/markhome-svg --filter markhome --filter @bkalafat/markhome-cli publish --dry-run --access public --no-git-checks",
+    "publish:packages": "corepack pnpm -r --filter @bkalafat/markhome-core --filter @bkalafat/markhome-svg --filter markhome --filter @bkalafat/markhome-cli publish --access public --no-git-checks"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import type { MarkHomeAst, MarkHomeDoor, MarkHomeRoom } from "@markhome/core";
+import type { MarkHomeAst, MarkHomeDoor, MarkHomeRoom } from "@bkalafat/markhome-core";
 
 export type RenderOptions = {
   width?: number | string;

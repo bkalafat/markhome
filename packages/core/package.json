@@ -1,5 +1,5 @@
 {
-  "name": "@markhome/core",
+  "name": "@bkalafat/markhome-core",
   "version": "0.1.0",
   "description": "Parser, AST types, and validation for MarkHome diagrams.",
   "type": "module",

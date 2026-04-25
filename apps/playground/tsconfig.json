@@ -11,10 +11,10 @@
       "markhome": [
         "../../packages/markhome/src/index.ts"
       ],
-      "@markhome/core": [
+      "@bkalafat/markhome-core": [
         "../../packages/core/src/index.ts"
       ],
-      "@markhome/svg": [
+      "@bkalafat/markhome-svg": [
         "../../packages/svg/src/index.ts"
       ]
     }

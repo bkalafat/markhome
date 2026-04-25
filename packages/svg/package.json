@@ -1,5 +1,5 @@
 {
-  "name": "@markhome/svg",
+  "name": "@bkalafat/markhome-svg",
   "version": "0.1.0",
   "description": "SVG renderer for MarkHome diagrams.",
   "type": "module",
@@ -40,6 +40,6 @@
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@markhome/core": "workspace:*"
+    "@bkalafat/markhome-core": "workspace:*"
   }
 }

@@ -1,7 +1,7 @@
-import { parse } from "@markhome/core";
-import { renderSvg } from "@markhome/svg";
-import type { MarkHomeAst } from "@markhome/core";
-import type { RenderOptions } from "@markhome/svg";
+import { parse } from "@bkalafat/markhome-core";
+import { renderSvg } from "@bkalafat/markhome-svg";
+import type { MarkHomeAst } from "@bkalafat/markhome-core";
+import type { RenderOptions } from "@bkalafat/markhome-svg";
 
 export type InitializeOptions = {
   startOnLoad?: boolean;
@@ -9,8 +9,8 @@ export type InitializeOptions = {
   renderOptions?: RenderOptions;
 };
 
-export type { MarkHomeAst, MarkHomeDoor, MarkHomeError, MarkHomeHome, MarkHomeItem, MarkHomeNote, MarkHomeRoom, MarkHomeWindow } from "@markhome/core";
-export type { RenderOptions } from "@markhome/svg";
+export type { MarkHomeAst, MarkHomeDoor, MarkHomeError, MarkHomeHome, MarkHomeItem, MarkHomeNote, MarkHomeRoom, MarkHomeWindow } from "@bkalafat/markhome-core";
+export type { RenderOptions } from "@bkalafat/markhome-svg";
 export { parse, renderSvg };
 
 export function render(source: string, options?: RenderOptions): string {

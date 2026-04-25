@@ -1,9 +1,9 @@
-# @markhome/core
+# @bkalafat/markhome-core
 
 Parser, AST types, and validation for MarkHome diagrams.
 
 ```ts
-import { parse } from "@markhome/core";
+import { parse } from "@bkalafat/markhome-core";
 
 const ast = parse(`
 home "My Apartment" unit cm

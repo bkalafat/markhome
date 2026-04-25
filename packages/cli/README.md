@@ -1,9 +1,9 @@
-# @markhome/cli
+# @bkalafat/markhome-cli
 
 Command-line renderer for MarkHome diagrams.
 
 ```bash
-npx @markhome/cli room.markhome -o room.svg
+npx @bkalafat/markhome-cli room.markhome -o room.svg
 ```
 
 After installation, the binary is `markhome`:

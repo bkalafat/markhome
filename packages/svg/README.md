@@ -1,10 +1,10 @@
-# @markhome/svg
+# @bkalafat/markhome-svg
 
 SVG renderer for MarkHome AST objects.
 
 ```ts
-import { parse } from "@markhome/core";
-import { renderSvg } from "@markhome/svg";
+import { parse } from "@bkalafat/markhome-core";
+import { renderSvg } from "@bkalafat/markhome-svg";
 
 const ast = parse(`
 home "My Apartment" unit cm

@@ -17,7 +17,7 @@ Install:
 
 ```bash
 npm install markhome
-npm install -D @markhome/cli
+npm install -D @bkalafat/markhome-cli
 ```
 
 CLI:

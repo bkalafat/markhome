@@ -6,9 +6,9 @@
 
    ```bash
    npm view markhome version
-   npm view @markhome/core version
-   npm view @markhome/svg version
-   npm view @markhome/cli version
+   npm view @bkalafat/markhome-core version
+   npm view @bkalafat/markhome-svg version
+   npm view @bkalafat/markhome-cli version
    ```
 
    `E404` means the package name is available or not visible to the current account.
@@ -30,10 +30,10 @@
 
 4. Configure npm trusted publishing for these packages:
 
-   - `@markhome/core`
-   - `@markhome/svg`
+   - `@bkalafat/markhome-core`
+   - `@bkalafat/markhome-svg`
    - `markhome`
-   - `@markhome/cli`
+   - `@bkalafat/markhome-cli`
 
    Use repository `bkalafat/markhome` and workflow `.github/workflows/publish.yml`.
 
@@ -68,7 +68,7 @@ Install:
 
 ```bash
 npm install markhome
-npm install -D @markhome/cli
+npm install -D @bkalafat/markhome-cli
 ```
 
 CLI:

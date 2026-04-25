@@ -33,8 +33,8 @@
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@markhome/core": "workspace:*",
-    "@markhome/svg": "workspace:*"
+    "@bkalafat/markhome-core": "workspace:*",
+    "@bkalafat/markhome-svg": "workspace:*"
   },
   "keywords": [
     "markdown",

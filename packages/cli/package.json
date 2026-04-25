@@ -1,5 +1,5 @@
 {
-  "name": "@markhome/cli",
+  "name": "@bkalafat/markhome-cli",
   "version": "0.1.0",
   "description": "Command-line renderer for MarkHome diagrams.",
   "type": "module",

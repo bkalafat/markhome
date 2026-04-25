@@ -72,16 +72,16 @@ importers:
 
   packages/markhome:
     dependencies:
-      '@markhome/core':
+      '@bkalafat/markhome-core':
         specifier: workspace:*
         version: link:../core
-      '@markhome/svg':
+      '@bkalafat/markhome-svg':
         specifier: workspace:*
         version: link:../svg
 
   packages/svg:
     dependencies:
-      '@markhome/core':
+      '@bkalafat/markhome-core':
         specifier: workspace:*
         version: link:../core
 
