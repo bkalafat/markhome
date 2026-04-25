@@ -2,13 +2,34 @@
   "name": "markhome-workspace",
   "private": true,
   "version": "0.1.0",
+  "description": "Markdown for simple 2D home layout diagrams.",
   "type": "module",
   "packageManager": "pnpm@10.33.2",
   "scripts": {
     "build": "corepack pnpm -r build",
     "dev": "corepack pnpm --filter @markhome/playground dev",
-    "check": "corepack pnpm -r check"
+    "dev:docs": "corepack pnpm --filter @markhome/docs dev",
+    "check": "corepack pnpm -r check",
+    "release:dry-run": "corepack pnpm -r --filter @markhome/core --filter @markhome/svg --filter markhome --filter @markhome/cli publish --dry-run --access public --no-git-checks",
+    "publish:packages": "corepack pnpm -r --filter @markhome/core --filter @markhome/svg --filter markhome --filter @markhome/cli publish --access public --no-git-checks"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkalafat/markhome.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bkalafat/markhome/issues"
+  },
+  "homepage": "https://github.com/bkalafat/markhome#readme",
+  "keywords": [
+    "markdown",
+    "diagram",
+    "floorplan",
+    "svg",
+    "home-layout"
+  ],
+  "author": "Burak Kalafat",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",

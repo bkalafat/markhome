@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "description": "Command-line renderer for MarkHome diagrams.",
   "type": "module",
+  "license": "MIT",
+  "author": "Burak Kalafat",
+  "homepage": "https://github.com/bkalafat/markhome#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkalafat/markhome.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/bkalafat/markhome/issues"
+  },
   "bin": {
     "markhome": "./dist/index.js"
   },
@@ -17,12 +28,21 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "markhome",
+    "cli",
+    "svg",
+    "diagram",
+    "floorplan"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "markhome": "workspace:*"
-  },
-  "license": "MIT"
+  }
 }

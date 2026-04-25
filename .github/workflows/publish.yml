@@ -1,0 +1,41 @@
+name: Publish Packages
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Check
+        run: corepack pnpm check
+
+      - name: Build
+        run: corepack pnpm build
+
+      - name: Publish packages
+        run: corepack pnpm publish:packages
+        env:
+          NPM_CONFIG_PROVENANCE: true

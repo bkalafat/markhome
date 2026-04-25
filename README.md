@@ -2,6 +2,8 @@
 
 Markdown for simple 2D home layout diagrams.
 
+![MarkHome example floor plan](assets/markhome-example.svg)
+
 ```markhome
 home "My Apartment" unit cm
 
@@ -23,6 +25,7 @@ It is not a CAD tool, BIM tool, 3D planner, AI interior designer, or marketplace
 
 ```bash
 npm install markhome
+npm install -D @markhome/cli
 ```
 
 ## Browser Usage
@@ -65,6 +68,12 @@ const sameSvg = render(source);
 
 ```bash
 npx @markhome/cli room.markhome -o room.svg
+```
+
+After install, the CLI binary is also available as:
+
+```bash
+npx markhome room.markhome -o room.svg
 ```
 
 ## Syntax

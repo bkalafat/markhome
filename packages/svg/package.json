@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "description": "SVG renderer for MarkHome diagrams.",
   "type": "module",
+  "license": "MIT",
+  "author": "Burak Kalafat",
+  "homepage": "https://github.com/bkalafat/markhome#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkalafat/markhome.git",
+    "directory": "packages/svg"
+  },
+  "bugs": {
+    "url": "https://github.com/bkalafat/markhome/issues"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -13,6 +24,16 @@
   },
   "files": [
     "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "markhome",
+    "svg",
+    "renderer",
+    "diagram",
+    "floorplan"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
