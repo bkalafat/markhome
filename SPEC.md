@@ -64,6 +64,8 @@ note RoomId "Text"
 
 Room coordinates are absolute in the home coordinate system. Item coordinates are relative to their containing room. Door and window `at` values are offsets along the selected side.
 
+Room definitions can appear in any order. Relative room references are resolved after all `room` lines are parsed, so a room may reference another room that appears later in the file.
+
 ## Version
 
 This document describes MarkHome Specification v0.1.

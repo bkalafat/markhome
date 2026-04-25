@@ -65,15 +65,7 @@ function referenceError(errors: MarkHomeError[], message: string): void {
   errors.push({ message });
 }
 
-function placeRelative(room: MarkHomeRoom, rooms: MarkHomeRoom[], errors: MarkHomeError[], lineNumber: number): MarkHomeRoom {
-  const ref = rooms.find((candidate) => candidate.id === room.refId);
-  if (!ref) {
-    error(errors, lineNumber, `reference room '${room.refId ?? ""}' was not found.`);
-    room.x = 0;
-    room.y = 0;
-    return room;
-  }
-
+function applyRelation(room: MarkHomeRoom, ref: MarkHomeRoom): void {
   const gap = room.gap ?? 20;
   if (room.relation === "right_of") {
     room.x = ref.x + ref.w + gap;
@@ -91,10 +83,93 @@ function placeRelative(room: MarkHomeRoom, rooms: MarkHomeRoom[], errors: MarkHo
     room.x = ref.x;
     room.y = ref.y - room.h - gap;
   }
-  return room;
 }
 
-function parseRoom(tokens: string[], lineNumber: number, rooms: MarkHomeRoom[], errors: MarkHomeError[]): MarkHomeRoom | null {
+type RoomResolutionState = "unvisited" | "visiting" | "resolved" | "failed";
+
+type ParsedRoom = MarkHomeRoom & {
+  lineNumber: number;
+  resolutionState: RoomResolutionState;
+  cycleReported?: boolean;
+};
+
+function failRoom(room: ParsedRoom): void {
+  room.x = 0;
+  room.y = 0;
+  room.resolutionState = "failed";
+}
+
+function reportCycle(stack: ParsedRoom[], refId: string, errors: MarkHomeError[]): void {
+  const cycleStart = stack.findIndex((room) => room.id === refId);
+  const cycleRooms = cycleStart === -1 ? stack : stack.slice(cycleStart);
+  const cyclePath = [...cycleRooms.map((room) => room.id), refId].join(" -> ");
+
+  cycleRooms.forEach((room) => {
+    if (!room.cycleReported) {
+      error(errors, room.lineNumber, `circular room reference: ${cyclePath}.`);
+      room.cycleReported = true;
+    }
+    failRoom(room);
+  });
+}
+
+function resolveRoom(room: ParsedRoom, byId: Map<string, ParsedRoom>, errors: MarkHomeError[], stack: ParsedRoom[]): boolean {
+  if (room.resolutionState === "resolved") return true;
+  if (room.resolutionState === "failed") return false;
+  if (room.resolutionState === "visiting") {
+    reportCycle([...stack, room], room.id, errors);
+    return false;
+  }
+
+  if (!room.relation) {
+    room.resolutionState = "resolved";
+    return true;
+  }
+
+  const refId = room.refId;
+  if (!refId) {
+    failRoom(room);
+    return false;
+  }
+
+  room.resolutionState = "visiting";
+  const ref = byId.get(refId);
+  if (!ref) {
+    error(errors, room.lineNumber, `reference room '${refId}' was not found.`);
+    failRoom(room);
+    return false;
+  }
+
+  if (ref.resolutionState === "visiting") {
+    reportCycle([...stack, room], ref.id, errors);
+    return false;
+  }
+
+  if (!resolveRoom(ref, byId, errors, [...stack, room])) {
+    if (!room.cycleReported) {
+      error(errors, room.lineNumber, `could not resolve room '${room.id}' because reference room '${ref.id}' could not be resolved.`);
+      failRoom(room);
+    }
+    return false;
+  }
+
+  applyRelation(room, ref);
+  room.resolutionState = "resolved";
+  return true;
+}
+
+function resolveRoomPositions(parsedRooms: ParsedRoom[], errors: MarkHomeError[]): MarkHomeRoom[] {
+  const byId = new Map<string, ParsedRoom>();
+  for (const room of parsedRooms) byId.set(room.id, room);
+
+  for (const room of parsedRooms) {
+    resolveRoom(room, byId, errors, []);
+  }
+
+  return parsedRooms.map(({ lineNumber, resolutionState, cycleReported, ...room }) => room);
+}
+
+function parseRoom(tokens: string[], lineNumber: number, errors: MarkHomeError[]): ParsedRoom | null {
   const id = tokens[1];
   const sizeToken = tokenValue(tokens, "size");
   const size = sizeToken ? parseSize(sizeToken) : null;
@@ -104,7 +179,7 @@ function parseRoom(tokens: string[], lineNumber: number, rooms: MarkHomeRoom[], 
   }
 
   const label = tokenValue(tokens, "label") || id;
-  let room: MarkHomeRoom = { id, label, x: 0, y: 0, w: size.w, h: size.h };
+  let room: ParsedRoom = { id, label, x: 0, y: 0, w: size.w, h: size.h, lineNumber, resolutionState: "unvisited" };
 
   const atToken = tokenValue(tokens, "at");
   if (atToken) {
@@ -132,7 +207,7 @@ function parseRoom(tokens: string[], lineNumber: number, rooms: MarkHomeRoom[], 
   }
 
   room = { ...room, relation, refId, gap };
-  return placeRelative(room, rooms, errors, lineNumber);
+  return room;
 }
 
 function parseOpening(
@@ -162,7 +237,7 @@ function parseOpening(
 export function parse(source: string): MarkHomeAst {
   const lines = source.split(/\r?\n/);
   const home = { name: "Untitled Home", unit: "cm" };
-  const rooms: MarkHomeRoom[] = [];
+  const parsedRooms: ParsedRoom[] = [];
   const doors: MarkHomeDoor[] = [];
   const windows: MarkHomeWindow[] = [];
   const items: MarkHomeAst["items"] = [];
@@ -187,8 +262,8 @@ export function parse(source: string): MarkHomeAst {
       }
 
       if (command === "room") {
-        const room = parseRoom(tokens, lineNumber, rooms, errors);
-        if (room) rooms.push(room);
+        const room = parseRoom(tokens, lineNumber, errors);
+        if (room) parsedRooms.push(room);
         return;
       }
 
@@ -233,6 +308,8 @@ export function parse(source: string): MarkHomeAst {
       error(errors, lineNumber, "could not parse this line.");
     }
   });
+
+  const rooms = resolveRoomPositions(parsedRooms, errors);
 
   const roomIds = new Set(rooms.map((room) => room.id));
   [...doors, ...windows, ...items, ...notes].forEach((entity) => {

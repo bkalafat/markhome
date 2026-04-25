@@ -88,6 +88,8 @@ npx markhome room.markhome -o room.svg
 
 ## Syntax
 
+Room definitions can appear in any order. Relative rooms are resolved after all `room` lines are parsed, so the referenced room does not have to be written first.
+
 ```txt
 home "Name" unit cm
 
