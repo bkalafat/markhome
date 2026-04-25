@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkHome Playground</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="index.html">MarkHome</a>
+        <a href="playground.html">Playground</a>
+        <a href="syntax.html">Syntax</a>
+        <a href="api.html">API</a>
+        <a href="examples.html">Examples</a>
+        <a href="roadmap.html">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="playground-page">
+      <section class="playground-header">
+        <div>
+          <p class="eyebrow">Live Editor</p>
+          <h1>MarkHome Playground</h1>
+          <p>Write MarkHome text on the left. The SVG floor plan updates instantly on the right.</p>
+        </div>
+        <div class="toolbar" aria-label="Playground actions">
+          <button type="button" data-action="reset">Reset</button>
+          <button type="button" data-action="copy">Copy SVG</button>
+          <button type="button" data-action="download">Download SVG</button>
+          <button type="button" data-action="share">Share</button>
+        </div>
+      </section>
+
+      <section class="playground-grid" aria-label="MarkHome editor and preview">
+        <div class="tool-panel">
+          <div class="tool-panel-header">
+            <h2>Source</h2>
+            <p>Use home, room, door, window, item, and note.</p>
+          </div>
+          <textarea id="source" spellcheck="false" aria-label="MarkHome source"></textarea>
+        </div>
+
+        <div class="tool-panel">
+          <div class="tool-panel-header split">
+            <div>
+              <h2 id="home-name">Preview</h2>
+              <p id="home-meta">SVG render</p>
+            </div>
+            <span id="summary" class="pill"></span>
+          </div>
+          <div id="preview" class="preview-surface"></div>
+        </div>
+      </section>
+
+      <section class="status-strip">
+        <div>
+          <h2>Parser Status</h2>
+          <div id="status"></div>
+        </div>
+        <div>
+          <h2>Install</h2>
+          <pre><code>npm install markhome
+npm install -D @bkalafat/markhome-cli</code></pre>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </main>
+
+    <script type="module" src="playground.js"></script>
+  </body>
+</html>

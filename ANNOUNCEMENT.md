@@ -35,7 +35,7 @@ Links:
 GitHub: https://github.com/bkalafat/markhome
 npm: https://www.npmjs.com/package/markhome
 Docs: https://bkalafat.github.io/markhome/
-Playground: https://bkalafat.github.io/markhome/
+Playground: https://bkalafat.github.io/markhome/playground.html
 
 I would love feedback from developers, architects, interior designers, and people building documentation or AI workflows.
 
@@ -50,3 +50,4 @@ Text in, SVG floor plan out.
 GitHub: https://github.com/bkalafat/markhome
 npm: https://www.npmjs.com/package/markhome
 Docs: https://bkalafat.github.io/markhome/
+Playground: https://bkalafat.github.io/markhome/playground.html

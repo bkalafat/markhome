@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MarkHome Docs</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <nav>
-        <a href="/">MarkHome</a>
-        <a href="/syntax.html">Syntax</a>
-        <a href="/api.html">API</a>
-        <a href="/examples.html">Examples</a>
-        <a href="/roadmap.html">Roadmap</a>
+        <a href="index.html">MarkHome</a>
+        <a href="playground.html">Playground</a>
+        <a href="syntax.html">Syntax</a>
+        <a href="api.html">API</a>
+        <a href="examples.html">Examples</a>
+        <a href="roadmap.html">Roadmap</a>
       </nav>
     </header>
 
@@ -23,6 +24,10 @@
           <p class="eyebrow">MarkHome v0.1</p>
           <h1>Markdown for simple 2D home layout diagrams.</h1>
           <p class="lede">Write home layouts as text. Render them as clean SVG diagrams. Use them in docs, blogs, READMEs, and AI workflows.</p>
+          <div class="hero-actions">
+            <a class="button-link" href="playground.html">Open Playground</a>
+            <a class="button-link secondary" href="https://www.npmjs.com/package/markhome">npm package</a>
+          </div>
         </div>
         <pre class="markhome">home "My Apartment" unit cm
 
@@ -43,7 +48,8 @@ note LivingRoom "Keep 80cm walking path"</pre>
       <section class="grid">
         <article>
           <h2>Install</h2>
-          <pre><code>npm install markhome</code></pre>
+          <pre><code>npm install markhome
+npm install -D @bkalafat/markhome-cli</code></pre>
         </article>
         <article>
           <h2>Render</h2>

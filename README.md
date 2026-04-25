@@ -4,7 +4,7 @@ Markdown for simple 2D home layout diagrams.
 
 ![MarkHome example floor plan](assets/markhome-example.svg)
 
-Live docs: https://bkalafat.github.io/markhome/
+Live docs and playground: https://bkalafat.github.io/markhome/
 
 ```markhome
 home "My Apartment" unit cm
@@ -51,6 +51,14 @@ item sofa in LivingRoom at 55,245 size 230x75
 </script>
 ```
 
+## Playground
+
+Try MarkHome in the browser:
+
+```txt
+https://bkalafat.github.io/markhome/playground.html
+```
+
 ## Programmatic Usage
 
 ```ts
@@ -72,7 +80,7 @@ const sameSvg = render(source);
 npx @bkalafat/markhome-cli room.markhome -o room.svg
 ```
 
-After install, the CLI binary is also available as:
+After installing `@bkalafat/markhome-cli`, the local CLI binary is also available as:
 
 ```bash
 npx markhome room.markhome -o room.svg
