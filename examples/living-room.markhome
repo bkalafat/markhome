@@ -2,7 +2,7 @@
 
 home "Living Room" unit cm
 
-room LivingRoom at 0,0 size 420x360 label "Living Room"
+room LivingRoom at 0,0 size 420x360 cutout southeast 120x100 label "Living Room"
 
 window LivingRoom north at 110 size 180
 door LivingRoom east at 155 size 90 swing inward

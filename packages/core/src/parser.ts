@@ -4,6 +4,8 @@ import type {
   MarkHomeError,
   MarkHomePoint,
   MarkHomeRoom,
+  MarkHomeRoomCutout,
+  MarkHomeRoomCutoutCorner,
   MarkHomeRoomRelation,
   MarkHomeSide,
   MarkHomeSize,
@@ -11,6 +13,7 @@ import type {
 } from "./ast.js";
 
 const ROOM_RELATIONS: MarkHomeRoomRelation[] = ["right_of", "left_of", "below", "above"];
+const CUTOUT_CORNERS: MarkHomeRoomCutoutCorner[] = ["northwest", "northeast", "southeast", "southwest"];
 const SIDES: MarkHomeSide[] = ["north", "south", "east", "west"];
 
 function parsePair(value: string): MarkHomePoint | null {
@@ -55,6 +58,27 @@ function tokenNumber(tokens: string[], key: string): number | null {
   if (raw === null) return null;
   const value = Number(raw);
   return Number.isFinite(value) ? value : null;
+}
+
+function parseCutout(tokens: string[], roomSize: MarkHomeSize, lineNumber: number, errors: MarkHomeError[]): MarkHomeRoomCutout | null {
+  const index = tokens.indexOf("cutout");
+  if (index === -1) return null;
+
+  const corner = tokens[index + 1] as MarkHomeRoomCutoutCorner | undefined;
+  const sizeToken = tokens[index + 2];
+  const size = sizeToken ? parseSize(sizeToken) : null;
+
+  if (!corner || !CUTOUT_CORNERS.includes(corner) || !size) {
+    error(errors, lineNumber, "room cutout syntax: 'cutout southeast 160x140'.");
+    return null;
+  }
+
+  if (size.w >= roomSize.w || size.h >= roomSize.h) {
+    error(errors, lineNumber, "room cutout must be smaller than the room size.");
+    return null;
+  }
+
+  return { corner, w: size.w, h: size.h };
 }
 
 function error(errors: MarkHomeError[], line: number, message: string): void {
@@ -179,7 +203,9 @@ function parseRoom(tokens: string[], lineNumber: number, errors: MarkHomeError[]
   }
 
   const label = tokenValue(tokens, "label") || id;
+  const cutout = parseCutout(tokens, size, lineNumber, errors);
   let room: ParsedRoom = { id, label, x: 0, y: 0, w: size.w, h: size.h, lineNumber, resolutionState: "unvisited" };
+  if (cutout) room.cutout = cutout;
 
   const atToken = tokenValue(tokens, "at");
   if (atToken) {

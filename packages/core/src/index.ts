@@ -7,6 +7,8 @@ export type {
   MarkHomeNote,
   MarkHomePoint,
   MarkHomeRoom,
+  MarkHomeRoomCutout,
+  MarkHomeRoomCutoutCorner,
   MarkHomeRoomRelation,
   MarkHomeSide,
   MarkHomeSize,

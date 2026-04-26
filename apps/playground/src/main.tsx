@@ -9,7 +9,7 @@ const DEFAULT_SOURCE = `# MarkHome MVP
 
 home "Akcaabat Apartment" unit cm
 
-room LivingRoom at 0,0 size 420x360 label "Living Room"
+room LivingRoom at 0,0 size 420x360 cutout southeast 120x100 label "Living Room"
 room BabyRoom right_of LivingRoom gap 20 size 300x280 label "Baby Room"
 room Kitchen below LivingRoom gap 20 size 260x220 label "Kitchen"
 
@@ -169,6 +169,7 @@ function App(): React.ReactElement {
         <div className="status-panel grammar">
           <h2>MVP Grammar</h2>
           <pre>{`room Name at 0,0 size 420x360
+room LRoom at 0,0 size 420x360 cutout southeast 160x140
 room B right_of A gap 20 size 300x280
 door Room east at 150 size 90
 window Room north at 100 size 160

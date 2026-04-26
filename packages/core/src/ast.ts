@@ -2,6 +2,14 @@ export type MarkHomeSide = "north" | "south" | "east" | "west";
 
 export type MarkHomeRoomRelation = "right_of" | "left_of" | "below" | "above";
 
+export type MarkHomeRoomCutoutCorner = "northwest" | "northeast" | "southeast" | "southwest";
+
+export type MarkHomeRoomCutout = {
+  corner: MarkHomeRoomCutoutCorner;
+  w: number;
+  h: number;
+};
+
 export type MarkHomeHome = {
   name: string;
   unit: string;
@@ -17,6 +25,7 @@ export type MarkHomeRoom = {
   relation?: MarkHomeRoomRelation;
   refId?: string;
   gap?: number;
+  cutout?: MarkHomeRoomCutout;
 };
 
 export type MarkHomeDoor = {

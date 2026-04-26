@@ -47,6 +47,7 @@ note
 home "Name" unit cm
 
 room RoomId at x,y size wxh label "Label"
+room RoomId at x,y size wxh cutout northwest|northeast|southeast|southwest wxh label "Label"
 room RoomId right_of OtherRoom gap 20 size wxh label "Label"
 room RoomId left_of OtherRoom gap 20 size wxh label "Label"
 room RoomId below OtherRoom gap 20 size wxh label "Label"
@@ -59,6 +60,8 @@ item type in RoomId at x,y size wxh label "Label"
 
 note RoomId "Text"
 ```
+
+`cutout` removes a rectangular corner from a room. This is the v0.1 way to draw a simple L-shaped room without introducing freeform CAD geometry.
 
 ## Coordinates
 

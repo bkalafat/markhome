@@ -94,6 +94,7 @@ Room definitions can appear in any order. Relative rooms are resolved after all 
 home "Name" unit cm
 
 room RoomId at x,y size wxh label "Label"
+room RoomId at x,y size wxh cutout southeast 160x140 label "L Room"
 room RoomId right_of OtherRoom gap 20 size wxh label "Label"
 room RoomId below OtherRoom gap 20 size wxh label "Label"
 

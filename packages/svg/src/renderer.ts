@@ -79,6 +79,65 @@ function doorArc(door: MarkHomeDoor, line: SideLine): string {
   return `M ${cx} ${cy} Q ${controlX} ${cy + door.size / 2} ${cx} ${cy + door.size}`;
 }
 
+function roomPolygonPoints(room: MarkHomeRoom): string | null {
+  if (!room.cutout) return null;
+
+  const x = room.x;
+  const y = room.y;
+  const w = room.w;
+  const h = room.h;
+  const cw = room.cutout.w;
+  const ch = room.cutout.h;
+
+  const points =
+    room.cutout.corner === "northwest"
+      ? [
+          [x + cw, y],
+          [x + w, y],
+          [x + w, y + h],
+          [x, y + h],
+          [x, y + ch],
+          [x + cw, y + ch]
+        ]
+      : room.cutout.corner === "northeast"
+        ? [
+            [x, y],
+            [x + w - cw, y],
+            [x + w - cw, y + ch],
+            [x + w, y + ch],
+            [x + w, y + h],
+            [x, y + h]
+          ]
+        : room.cutout.corner === "southeast"
+          ? [
+              [x, y],
+              [x + w, y],
+              [x + w, y + h - ch],
+              [x + w - cw, y + h - ch],
+              [x + w - cw, y + h],
+              [x, y + h]
+            ]
+          : [
+              [x, y],
+              [x + w, y],
+              [x + w, y + h],
+              [x + cw, y + h],
+              [x + cw, y + h - ch],
+              [x, y + h - ch]
+            ];
+
+  return points.map(([px, py]) => `${px},${py}`).join(" ");
+}
+
+function roomShape(room: MarkHomeRoom): string {
+  const points = roomPolygonPoints(room);
+  if (points) {
+    return `<polygon points="${points}" fill="#fffaf0" stroke="#1f2937" stroke-width="5" />`;
+  }
+
+  return `<rect x="${room.x}" y="${room.y}" width="${room.w}" height="${room.h}" fill="#fffaf0" stroke="#1f2937" stroke-width="5" rx="2" />`;
+}
+
 export function renderSvg(ast: MarkHomeAst, options: RenderOptions = {}): string {
   const bounds = roomBounds(ast.rooms);
   const padding = options.padding ?? 70;
@@ -107,7 +166,7 @@ export function renderSvg(ast: MarkHomeAst, options: RenderOptions = {}): string
 
   ast.rooms.forEach((room) => {
     svg.push("<g>");
-    svg.push(`<rect x="${room.x}" y="${room.y}" width="${room.w}" height="${room.h}" fill="#fffaf0" stroke="#1f2937" stroke-width="5" rx="2" />`);
+    svg.push(roomShape(room));
     svg.push(`<text x="${room.x + 14}" y="${room.y + 26}" font-size="18" font-weight="700" fill="#111827">${escapeXml(room.label)}</text>`);
     svg.push(`<text x="${room.x + 14}" y="${room.y + 48}" font-size="12" fill="#6b7280">${room.w}x${room.h} ${escapeXml(ast.home.unit)}</text>`);
     svg.push("</g>");
