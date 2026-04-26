@@ -42,7 +42,7 @@ note LivingRoom "Keep 80cm walking path"</pre>
 
       <section class="band">
         <h2>What MarkHome Is</h2>
-        <p>MarkHome is a text-based 2D home layout diagram standard. Its core scope is deliberately small: text, parser, AST, SVG renderer.</p>
+        <p>MarkHome is a text-based 2D home layout diagram standard. Its core scope is deliberately small: text, parser, AST, SVG renderer. Rooms can be placed in any order, and simple L-shaped rooms are supported with rectangular corner cutouts.</p>
       </section>
 
       <section class="grid">
@@ -60,6 +60,14 @@ const svg = render(source);</code></pre>
         <article>
           <h2>CLI</h2>
           <pre><code>npx @bkalafat/markhome-cli room.markhome -o room.svg</code></pre>
+        </article>
+        <article>
+          <h2>L Rooms</h2>
+          <pre><code>room Living at 0,0 size 420x360 cutout southeast 120x100</code></pre>
+        </article>
+        <article>
+          <h2>Playground</h2>
+          <p>Use examples, zoom controls, grid toggle, source export, SVG export, and share links.</p>
         </article>
       </section>
     </main>

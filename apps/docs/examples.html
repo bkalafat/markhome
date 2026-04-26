@@ -22,7 +22,7 @@
       <div class="example-list">
         <pre class="markhome">home "Living Room" unit cm
 
-room LivingRoom at 0,0 size 420x360 label "Living Room"
+room LivingRoom at 0,0 size 420x360 cutout southeast 120x100 label "Living Room"
 window LivingRoom north at 110 size 180
 door LivingRoom east at 155 size 90
 item sofa in LivingRoom at 55,245 size 230x75 label "Sofa"
@@ -35,6 +35,15 @@ window BabyRoom north at 70 size 140
 door BabyRoom west at 100 size 80
 item crib in BabyRoom at 35,80 size 125x75 label "Crib"
 item wardrobe in BabyRoom at 185,65 size 85x150 label "Wardrobe"</pre>
+        <pre class="markhome">home "L Room" unit cm
+
+room LRoom at 0,0 size 460x360 cutout southeast 170x130 label "L Room"
+room Study right_of LRoom gap 24 size 220x220 label "Study"
+
+window LRoom north at 120 size 190
+door LRoom east at 70 size 88
+item sofa in LRoom at 42,245 size 220x72 label "Sofa"
+item table in LRoom at 300,70 size 95x70 label "Desk"</pre>
       </div>
     </main>
     <script type="module">

@@ -23,10 +23,18 @@
         <div>
           <p class="eyebrow">Live Editor</p>
           <h1>MarkHome Playground</h1>
-          <p>Write MarkHome text on the left. The SVG floor plan updates instantly on the right.</p>
+          <p>Write MarkHome text on the left. The SVG floor plan updates instantly on the right. Load examples, zoom, pan, copy, download, and share layouts.</p>
         </div>
         <div class="toolbar" aria-label="Playground actions">
+          <select id="example-select" aria-label="Load example">
+            <option value="apartment">Apartment sample</option>
+            <option value="lroom">L-shaped room</option>
+            <option value="studio">Studio apartment</option>
+            <option value="baby">Baby room</option>
+          </select>
           <button type="button" data-action="reset">Reset</button>
+          <button type="button" data-action="copy-source">Copy Source</button>
+          <button type="button" data-action="download-source">Download Source</button>
           <button type="button" data-action="copy">Copy SVG</button>
           <button type="button" data-action="download">Download SVG</button>
           <button type="button" data-action="share">Share</button>
@@ -56,8 +64,13 @@
                 <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
                 <button type="button" data-action="zoom-reset">Fit</button>
               </div>
+              <label class="grid-toggle">
+                <input id="grid-toggle" type="checkbox" checked />
+                Grid
+              </label>
             </div>
           </div>
+          <input id="zoom-slider" class="zoom-slider" type="range" min="50" max="300" step="25" value="100" aria-label="Preview zoom" />
           <div id="preview" class="preview-surface"></div>
         </div>
       </section>
@@ -71,6 +84,10 @@
           <h2>Install</h2>
           <pre><code>npm install markhome
 npm install -D @bkalafat/markhome-cli</code></pre>
+        </div>
+        <div>
+          <h2>Cutout Rooms</h2>
+          <pre><code>room LRoom at 0,0 size 420x360 cutout southeast 160x140</code></pre>
         </div>
       </section>
 

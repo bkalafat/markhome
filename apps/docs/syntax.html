@@ -21,12 +21,15 @@
       <h1>Syntax</h1>
       <p>MarkHome v0.1 has six commands: home, room, door, window, item, and note.</p>
       <p>Room definitions can appear in any order. A relative room can reference another room that appears later in the file.</p>
+      <p>Use `cutout` to remove one rectangular corner from a room and draw a simple L-shaped layout.</p>
       <pre><code>home "Name" unit cm
 
 room RoomId at x,y size wxh label "Label"
 room RoomId at x,y size wxh cutout southeast 160x140 label "L Room"
 room RoomId right_of OtherRoom gap 20 size wxh label "Label"
+room RoomId left_of OtherRoom gap 20 size wxh label "Label"
 room RoomId below OtherRoom gap 20 size wxh label "Label"
+room RoomId above OtherRoom gap 20 size wxh label "Label"
 
 door RoomId north|south|east|west at number size number
 window RoomId north|south|east|west at number size number
@@ -34,6 +37,11 @@ window RoomId north|south|east|west at number size number
 item type in RoomId at x,y size wxh label "Label"
 
 note RoomId "Text"</code></pre>
+      <h2>Cutout Corners</h2>
+      <pre><code>cutout northwest 120x100
+cutout northeast 120x100
+cutout southeast 120x100
+cutout southwest 120x100</code></pre>
     </main>
   </body>
 </html>

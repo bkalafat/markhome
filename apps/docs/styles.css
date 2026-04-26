@@ -20,7 +20,8 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+select {
   min-height: 2.35rem;
   border: 1px solid #d4c5b3;
   border-radius: 8px;
@@ -31,7 +32,8 @@ button {
   padding: 0.55rem 0.8rem;
 }
 
-button:hover {
+button:hover,
+select:hover {
   background: #f2eadf;
 }
 
@@ -173,12 +175,12 @@ h2 {
 .grid,
 .example-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .example-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 article {
@@ -300,6 +302,26 @@ code {
   text-align: center;
 }
 
+.zoom-slider {
+  display: block;
+  width: calc(100% - 2rem);
+  height: 1.9rem;
+  margin: 0.15rem 1rem 0.35rem;
+  accent-color: #17130f;
+}
+
+.grid-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #5d544c;
+  font-size: 0.82rem;
+}
+
+.grid-toggle input {
+  accent-color: #17130f;
+}
+
 textarea {
   width: 100%;
   height: calc(100% - 4rem);
@@ -316,10 +338,17 @@ textarea {
 }
 
 .preview-surface {
-  height: calc(100% - 4rem);
+  height: calc(100% - 6.4rem);
   min-height: 35rem;
   background: #f8f4ec;
+  cursor: grab;
   overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.preview-surface.is-panning {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .preview-zoom-layer {
@@ -335,7 +364,7 @@ textarea {
 
 .status-strip {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }

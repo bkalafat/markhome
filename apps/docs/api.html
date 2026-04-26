@@ -25,15 +25,25 @@
       <p>Parses MarkHome text into an AST with rooms, doors, windows, items, notes, and recoverable errors.</p>
       <h2>renderSvg(ast, options)</h2>
       <p>Renders a parsed AST to an SVG string.</p>
+      <pre><code>const svg = renderSvg(ast, {
+  height: 520,
+  showGrid: true
+});</code></pre>
       <h2>render(source, options)</h2>
       <p>Parses source text and renders SVG in one call.</p>
+      <pre><code>const svg = render(source, {
+  showGrid: false
+});</code></pre>
       <h2>initialize(options)</h2>
       <p>Finds MarkHome blocks in the browser and replaces them with SVG diagrams.</p>
       <pre><code>import markhome from "markhome";
 
 markhome.initialize({
-  startOnLoad: true
+  startOnLoad: true,
+  selector: ".markhome"
 });</code></pre>
+      <h2>L-shaped rooms</h2>
+      <p>The parser exposes L-room data as `room.cutout`, and the SVG renderer draws the room as a polygon.</p>
     </main>
   </body>
 </html>
