@@ -48,7 +48,15 @@
               <h2 id="home-name">Preview</h2>
               <p id="home-meta">SVG render</p>
             </div>
-            <span id="summary" class="pill"></span>
+            <div class="preview-tools">
+              <span id="summary" class="pill"></span>
+              <div class="zoom-controls" aria-label="Preview zoom controls">
+                <button type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
+                <span id="zoom-label" class="zoom-label">100%</span>
+                <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
+                <button type="button" data-action="zoom-reset">Fit</button>
+              </div>
+            </div>
           </div>
           <div id="preview" class="preview-surface"></div>
         </div>

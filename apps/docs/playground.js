@@ -33,10 +33,16 @@ const status = document.querySelector("#status");
 const homeName = document.querySelector("#home-name");
 const homeMeta = document.querySelector("#home-meta");
 const summary = document.querySelector("#summary");
+const zoomLabel = document.querySelector("#zoom-label");
 const toast = document.querySelector("#toast");
 
 let currentSvg = "";
 let toastTimer;
+let zoom = 1;
+
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 3;
+const ZOOM_STEP = 0.25;
 
 function encodeSource(value) {
   return btoa(unescape(encodeURIComponent(value)));
@@ -68,10 +74,25 @@ function formatError(error) {
   return error.line ? `Line ${error.line}: ${error.message}` : `Reference error: ${error.message}`;
 }
 
+function clampZoom(value) {
+  return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, value));
+}
+
+function paintPreview() {
+  const size = `${zoom * 100}%`;
+  preview.innerHTML = `<div class="preview-zoom-layer" style="width: ${size}; height: ${size};">${currentSvg}</div>`;
+  zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+}
+
+function setZoom(value) {
+  zoom = clampZoom(value);
+  paintPreview();
+}
+
 function render() {
   const ast = parse(source.value);
   currentSvg = renderSvg(ast, { height: "100%" });
-  preview.innerHTML = currentSvg;
+  paintPreview();
   homeName.textContent = ast.home.name;
   homeMeta.textContent = `Unit: ${ast.home.unit}`;
   summary.textContent = `${ast.rooms.length} rooms · ${ast.items.length} items`;
@@ -112,6 +133,18 @@ document.querySelector('[data-action="copy"]').addEventListener("click", async (
 });
 
 document.querySelector('[data-action="download"]').addEventListener("click", downloadSvg);
+
+document.querySelector('[data-action="zoom-out"]').addEventListener("click", () => {
+  setZoom(zoom - ZOOM_STEP);
+});
+
+document.querySelector('[data-action="zoom-in"]').addEventListener("click", () => {
+  setZoom(zoom + ZOOM_STEP);
+});
+
+document.querySelector('[data-action="zoom-reset"]').addEventListener("click", () => {
+  setZoom(1);
+});
 
 document.querySelector('[data-action="share"]').addEventListener("click", async () => {
   const url = `${window.location.origin}${window.location.pathname}#source=${encodeSource(source.value)}`;

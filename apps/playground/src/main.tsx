@@ -66,8 +66,10 @@ function downloadSvg(svg: string): void {
 function App(): React.ReactElement {
   const [source, setSource] = useState(initialSource);
   const [status, setStatus] = useState("");
+  const [zoom, setZoom] = useState(1);
   const parsed = useMemo(() => parse(source), [source]);
   const svg = useMemo(() => renderSvg(parsed, { height: "100%" }), [parsed]);
+  const zoomPercent = Math.round(zoom * 100);
 
   useEffect(() => {
     if (!status) return;
@@ -91,6 +93,10 @@ function App(): React.ReactElement {
     await navigator.clipboard.writeText(nextUrl);
     window.history.replaceState(null, "", nextUrl);
     setStatus("Share link copied");
+  }
+
+  function zoomBy(delta: number): void {
+    setZoom((value) => Math.min(3, Math.max(0.5, value + delta)));
   }
 
   return (
@@ -130,9 +136,19 @@ function App(): React.ReactElement {
               <h2>{parsed.home.name}</h2>
               <p>Unit: {parsed.home.unit}</p>
             </div>
-            <div className="count">{parsed.rooms.length} rooms · {parsed.items.length} items</div>
+            <div className="preview-tools">
+              <div className="count">{parsed.rooms.length} rooms · {parsed.items.length} items</div>
+              <div className="zoom-controls" aria-label="Preview zoom controls">
+                <button type="button" onClick={() => zoomBy(-0.25)} aria-label="Zoom out">-</button>
+                <span className="zoom-label">{zoomPercent}%</span>
+                <button type="button" onClick={() => zoomBy(0.25)} aria-label="Zoom in">+</button>
+                <button type="button" onClick={() => setZoom(1)}>Fit</button>
+              </div>
+            </div>
           </div>
-          <div className="preview-canvas" dangerouslySetInnerHTML={{ __html: svg }} />
+          <div className="preview-canvas">
+            <div className="preview-zoom-layer" style={{ width: `${zoomPercent}%`, height: `${zoomPercent}%` }} dangerouslySetInnerHTML={{ __html: svg }} />
+          </div>
         </div>
       </section>
 
