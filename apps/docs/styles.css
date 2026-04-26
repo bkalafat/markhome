@@ -38,6 +38,7 @@ button:hover {
 .site-header {
   border-bottom: 1px solid #e3d8c9;
   background: rgba(250, 247, 240, 0.88);
+  box-shadow: 0 1px 0 rgba(23, 19, 15, 0.03);
   position: sticky;
   top: 0;
   z-index: 10;
